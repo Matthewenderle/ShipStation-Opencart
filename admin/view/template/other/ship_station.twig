@@ -1,0 +1,94 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-end">
+        <a href="{{ keygen }}" class="btn btn-primary" id="keygen">{{ button_keygen }}
+        </a>
+        
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default">
+        <i class="fa fa-reply"></i>
+        </a>
+      </div>
+      <h1>{{ heading_title }}</h1>
+      <ol class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+  {% if error_warning %}
+        <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+       {% endif %}
+    <div class="card">
+      <div class="card-header"><i class="fas fa-pencil-alt"></i> {{ text_edit }}</div>
+      <div class="card-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-shipstation" class="form-horizontal">
+          <div class="row mb-3">
+            <label for="input-status" class="col-sm-2 col-form-label">{{ entry_config_key }}</label>
+            <div class="col-sm-9 pb-2">
+                <input type="text" name="shipstation_config_key" value="{{ shipstation_config_key }}" placeholder=" {{ entry_config_key }}" id="entry-config_key" class="form-control"/>
+            </div>
+
+            <label for="input-status" class="col-sm-2 col-form-label">{{ entry_config_ver_key }}</label>
+            <div class="col-sm-9 pb-2">
+                <input type="text" name="shipstation_verify_key" value="{{ shipstation_verify_key }}" placeholder=" {{ entry_config_ver_key }}" id="entry-config_ver_key" class="form-control"/>
+            </div>
+          </div>
+           <div class="row mb-3 hidden">
+              <label for="input-status" class="col-sm-2 col-form-label">{{ heading_error }}</label>
+
+              <div class="col-sm-9 pb-2">
+                  <label class="show-log btn btn-danger control-label" id="show-log">{{ button_error_log }}</label>
+                  <div id="error-log" class="hide">
+                    <textarea name="google_hangouts_code" rows="10" id="input-code" class="form-control mt-2"> {{ log }}</textarea>  
+                       
+                        {% if log %}
+                        <div class="pull-right">
+                            <a href="{{ clear }}" class="btn btn-danger"> {{ button_clear }}</a>
+                        </div>
+                       {% endif %}
+                    </div>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .visible {
+        display: block;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Confirm Key Generation
+        $('#keygen').click(function() {
+            if ($(this).attr('href') != null && $(this).attr('href').indexOf('keygen', 1) != -1) {
+                if (confirm('{{ text_confirm }}')) {
+                    $(this).attr('href', $(this).attr('href') + '&status=1');
+                } else {
+                    location.reload();
+                    return false;
+                }
+            }
+        });
+        //Show the error log
+        $('#show-log').click(function() {
+            $('#error-log').toggleClass('visible');
+        });
+
+    });
+</script>
+
+{{ footer }}
