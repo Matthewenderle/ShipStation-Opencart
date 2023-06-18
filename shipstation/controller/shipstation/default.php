@@ -1,6 +1,6 @@
 <?php
 
-namespace Opencart\Admin\Controller\Default;
+namespace Opencart\Admin\Controller\Shipstation\Default;
 
 class DefaultController  extends \Opencart\System\Engine\Controller
 {

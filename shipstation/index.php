@@ -288,11 +288,11 @@ while ($action) {
 // $controller->dispatch(new Action('httpauth'), new Action('httpauth'));
 
 // Router
-if (isset($request->get['action'])) {
-    $action =  new \Opencart\System\Engine\Action($request->get['action']);
-} else {
-    $action = new \Opencart\System\Engine\Action('default');
-}
+// if (isset($request->get['action'])) {
+//     $action =  new \Opencart\System\Engine\Action($request->get['action']);
+// } else {
+$action = new \Opencart\System\Engine\Action('common/default');
+// }
 
 print($action->execute($registry));
 
